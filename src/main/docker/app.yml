@@ -1,0 +1,14 @@
+version: '2'
+services:
+    imgapp-app:
+        image: imgapp
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://imgapp-postgresql:5432/imgApp
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    imgapp-postgresql:
+        extends:
+            file: postgresql.yml
+            service: imgapp-postgresql
