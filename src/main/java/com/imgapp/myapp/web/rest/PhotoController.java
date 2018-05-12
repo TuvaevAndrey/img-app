@@ -4,6 +4,9 @@ import com.imgapp.myapp.domain.Photo;
 import com.imgapp.myapp.repository.PhotoRepository;
 import com.imgapp.myapp.service.PhotoService;
 import com.imgapp.myapp.service.dto.PhotoRequest;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,5 +34,13 @@ public class PhotoController {
         return photoService.uploadPhoto(request, file);
     }
 
+    @GetMapping("/{filename}")
+    @ResponseBody
+    public ResponseEntity<Resource> getFile(@PathVariable String filename) {
+        Resource file = photoService.loadFile(filename);
+        return ResponseEntity.ok()
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+            .body(file);
+    }
 
 }

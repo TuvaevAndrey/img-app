@@ -2,16 +2,19 @@ package com.imgapp.myapp;
 
 import com.imgapp.myapp.config.ApplicationProperties;
 import com.imgapp.myapp.config.DefaultProfileUtil;
-
+import com.imgapp.myapp.domain.Photo;
+import com.imgapp.myapp.repository.PhotoRepository;
 import io.github.jhipster.config.JHipsterConstants;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.actuate.autoconfigure.*;
+import org.springframework.boot.actuate.autoconfigure.MetricFilterAutoConfiguration;
+import org.springframework.boot.actuate.autoconfigure.MetricRepositoryAutoConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 
@@ -20,6 +23,9 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @ComponentScan
 @EnableAutoConfiguration(exclude = {MetricFilterAutoConfiguration.class, MetricRepositoryAutoConfiguration.class})
@@ -80,5 +86,16 @@ public class ImgApp {
             InetAddress.getLocalHost().getHostAddress(),
             env.getProperty("server.port"),
             env.getActiveProfiles());
+    }
+
+    @Bean
+    public CommandLineRunner demo(PhotoRepository repository) {
+        return (args) -> {
+            Map<String, Photo> photoMap = repository.findAll().stream()
+                .collect(Collectors.toMap(Photo::getName, Function.identity()));
+            if (!photoMap.containsKey("surakat")) {
+                repository.save(new Photo("surakat"));
+            }
+        };
     }
 }

@@ -34,6 +34,6 @@ public class PhotoServiceTest {
 
     @Test
     public void loadTest() {
-        photoService.loadFile("test.jpg");
+        photoService.loadFile("surakat.jpg");
     }
 }

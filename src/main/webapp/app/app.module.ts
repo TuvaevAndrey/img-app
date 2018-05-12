@@ -1,42 +1,42 @@
 import './vendor.ts';
 
-import { NgModule, Injector } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { Ng2Webstorage, LocalStorageService, SessionStorageService  } from 'ngx-webstorage';
-import { JhiEventManager } from 'ng-jhipster';
+import {Injector, NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {LocalStorageService, Ng2Webstorage, SessionStorageService} from 'ngx-webstorage';
+import {JhiEventManager} from 'ng-jhipster';
 
-import { AuthInterceptor } from './blocks/interceptor/auth.interceptor';
-import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interceptor';
-import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.interceptor';
-import { NotificationInterceptor } from './blocks/interceptor/notification.interceptor';
-import { ImgAppSharedModule, UserRouteAccessService } from './shared';
-import { ImgAppAppRoutingModule} from './app-routing.module';
-import { ImgAppHomeModule } from './home/home.module';
-import { ImgAppAdminModule } from './admin/admin.module';
-import { ImgAppAccountModule } from './account/account.module';
-import { ImgAppEntityModule } from './entities/entity.module';
-import { PaginationConfig } from './blocks/config/uib-pagination.config';
+import {AuthInterceptor} from './blocks/interceptor/auth.interceptor';
+import {AuthExpiredInterceptor} from './blocks/interceptor/auth-expired.interceptor';
+import {ErrorHandlerInterceptor} from './blocks/interceptor/errorhandler.interceptor';
+import {NotificationInterceptor} from './blocks/interceptor/notification.interceptor';
+import {ImgAppSharedModule, UserRouteAccessService} from './shared';
+import {ImgAppAppRoutingModule} from './app-routing.module';
+import {ImgAppHomeModule} from './home';
+import {ImgAppAdminModule} from './admin/admin.module';
+import {ImgAppAccountModule} from './account/account.module';
+import {ImgAppImagesModule} from './images';
+import {PaginationConfig} from './blocks/config/uib-pagination.config';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import {
+    ErrorComponent,
+    FooterComponent,
     JhiMainComponent,
     NavbarComponent,
-    FooterComponent,
-    ProfileService,
     PageRibbonComponent,
-    ErrorComponent
+    ProfileService
 } from './layouts';
 
 @NgModule({
     imports: [
         BrowserModule,
         ImgAppAppRoutingModule,
-        Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
+        Ng2Webstorage.forRoot({prefix: 'jhi', separator: '-'}),
         ImgAppSharedModule,
         ImgAppHomeModule,
         ImgAppAdminModule,
         ImgAppAccountModule,
-        ImgAppEntityModule,
+        ImgAppImagesModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
@@ -84,6 +84,7 @@ import {
             ]
         }
     ],
-    bootstrap: [ JhiMainComponent ]
+    bootstrap: [JhiMainComponent]
 })
-export class ImgAppAppModule {}
+export class ImgAppAppModule {
+}
