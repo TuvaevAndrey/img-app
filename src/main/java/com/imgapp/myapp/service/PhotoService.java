@@ -3,7 +3,6 @@ package com.imgapp.myapp.service;
 
 import com.imgapp.myapp.domain.Photo;
 import com.imgapp.myapp.repository.PhotoRepository;
-import com.imgapp.myapp.service.dto.PhotoRequest;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -26,12 +25,11 @@ public class PhotoService {
         this.photoRepository = photoRepository;
     }
 
-    public Photo uploadPhoto(PhotoRequest request, MultipartFile file) {
+    public Photo uploadPhoto(MultipartFile file) {
         try {
             Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
             Photo photo = new Photo();
             photo.setName(file.getOriginalFilename());
-            photo.setDescription(request.getDescription());
             return photoRepository.save(photo);
 
         } catch (IOException e) {

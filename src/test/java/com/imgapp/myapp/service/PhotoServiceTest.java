@@ -2,7 +2,6 @@ package com.imgapp.myapp.service;
 
 import com.imgapp.myapp.ImgApp;
 import com.imgapp.myapp.repository.PhotoRepository;
-import com.imgapp.myapp.service.dto.PhotoRequest;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,8 +25,7 @@ public class PhotoServiceTest {
         MockMultipartFile file = new MockMultipartFile(
             "data", "filename.txt", "text/plain", "some xml".getBytes());
 
-        PhotoRequest request = new PhotoRequest();
-        //photoService.uploadPhoto(request,file);
+        //photoService.uploadPhoto(file);
 
         Assertions.assertThat(repository.findAll()).isNotEmpty();
     }

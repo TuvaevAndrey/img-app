@@ -16,6 +16,7 @@ export class ListUploadComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.showFiles(true);
     }
 
     showFiles(enable: boolean) {
@@ -30,6 +31,4 @@ export class ListUploadComponent implements OnInit {
 class Photo {
     id: number;
     name: string;
-    description: string;
-    image: Blob;
 }

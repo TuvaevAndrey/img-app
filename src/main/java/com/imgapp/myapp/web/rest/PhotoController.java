@@ -3,7 +3,6 @@ package com.imgapp.myapp.web.rest;
 import com.imgapp.myapp.domain.Photo;
 import com.imgapp.myapp.repository.PhotoRepository;
 import com.imgapp.myapp.service.PhotoService;
-import com.imgapp.myapp.service.dto.PhotoRequest;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -30,8 +29,8 @@ public class PhotoController {
     }
 
     @PostMapping
-    public Photo uploadPhoto(@RequestPart PhotoRequest request, @RequestParam MultipartFile file) {
-        return photoService.uploadPhoto(request, file);
+    public Photo uploadPhoto(@RequestParam MultipartFile file) {
+        return photoService.uploadPhoto(file);
     }
 
     @GetMapping("/{filename}")

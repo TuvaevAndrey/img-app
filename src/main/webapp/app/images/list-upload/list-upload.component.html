@@ -1,17 +1,11 @@
-<button class="button btn-info" style="border: 1px solid transparent" *ngIf='showFile'
-        (click)='showFiles(false)'>Hide Images
-</button>
+<div>
+    <button class="btn btn-info"  style="border: 1px solid transparent; margin-bottom: 10px"
+            (click)='showFiles(true)'>Refresh
+    </button>
 
-<button class="button btn-info"  style="border: 1px solid transparent" *ngIf='!showFile'
-        (click)='showFiles(true)'>Show Images
-</button>
-
-<div [hidden]="!showFile">
     <div class="panel panel-primary">
-        <div *ngFor="let file of fileUploads | async">
-            <div class="panel-body">
-                <details-upload [fileUpload]='file'></details-upload>
-            </div>
+        <div *ngFor="let file of fileUploads | async" class="photo">
+                <details-upload [fileUpload]='file' style="display:inline-block"></details-upload>
         </div>
     </div>
 </div>

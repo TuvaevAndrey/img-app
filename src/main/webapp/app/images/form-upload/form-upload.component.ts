@@ -38,9 +38,11 @@ export class FormUploadComponent implements OnInit {
                 this.progress.percentage = Math.round(100 * event.loaded / event.total);
             } else if (event instanceof HttpResponse) {
                 console.log('File is completely uploaded!');
+                setTimeout(() => {
+                    this.currentFileUpload = undefined;
+                }, 3000)
             }
         });
-
         this.selectedFiles = undefined;
     }
 }

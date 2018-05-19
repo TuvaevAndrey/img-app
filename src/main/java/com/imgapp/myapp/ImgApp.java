@@ -93,8 +93,14 @@ public class ImgApp {
         return (args) -> {
             Map<String, Photo> photoMap = repository.findAll().stream()
                 .collect(Collectors.toMap(Photo::getName, Function.identity()));
-            if (!photoMap.containsKey("surakat")) {
-                repository.save(new Photo("surakat"));
+            if (!photoMap.containsKey("surakat.jpg")) {
+                repository.save(new Photo("surakat.jpg"));
+            }
+            if (!photoMap.containsKey("duck.jpg")) {
+                repository.save(new Photo("duck.jpg"));
+            }
+            if (!photoMap.containsKey("bear.jpg")) {
+                repository.save(new Photo("bear.jpg"));
             }
         };
     }
