@@ -1,0 +1,9 @@
+.details {
+    max-width:430px;
+}
+
+@media (max-width: 470px) {
+    .details {
+        max-width:280px!important;
+    }
+}

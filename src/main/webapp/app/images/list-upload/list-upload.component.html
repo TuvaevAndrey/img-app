@@ -1,0 +1,11 @@
+<div>
+    <button class="btn btn-info"  style="border: 1px solid transparent; margin-bottom: 10px"
+            (click)='showFiles(true)'>Refresh
+    </button>
+
+    <div class="panel panel-primary">
+        <div *ngFor="let file of fileUploads | async" class="photo">
+                <details-upload [fileUpload]='file' style="display:inline-block"></details-upload>
+        </div>
+    </div>
+</div>

@@ -8,7 +8,7 @@ import {
     registerRoute,
     socialRegisterRoute,
     socialAuthRoute,
-    settingsRoute
+    settingsRoute,
 } from './';
 
 const ACCOUNT_ROUTES = [
